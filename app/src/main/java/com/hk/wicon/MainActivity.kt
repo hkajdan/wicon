@@ -1,6 +1,7 @@
 package com.hk.wicon
 
 import android.os.Bundle
+import android.util.Log
 import android.view.InputDevice
 import android.view.KeyEvent
 import androidx.activity.ComponentActivity
