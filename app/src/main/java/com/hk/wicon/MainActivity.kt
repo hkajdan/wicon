@@ -12,11 +12,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.hk.wicon.ui.theme.WiconTheme
 
 class MainActivity : ComponentActivity() {
+    private val pressedKey = mutableStateOf("Aucune touche pressée")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,13 +27,14 @@ class MainActivity : ComponentActivity() {
             WiconTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = pressedKey.value,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
         }
     }
+
     // --- DÉBUT DU CODE À COPIER ---
 
     // Cette fonction s'active à chaque fois qu'une touche est pressée
@@ -43,6 +46,7 @@ class MainActivity : ComponentActivity() {
 
             // On écrit un message dans la console développeur (Logcat)
             Log.d("TEST_MANETTE", "Bouton appuyé : Code = $keyCode")
+            pressedKey.value = "Touche pressée : $keyCode"
 
             return true // On dit au système "C'est bon, j'ai géré le clic"
         }
